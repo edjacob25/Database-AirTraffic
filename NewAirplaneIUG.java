@@ -5,21 +5,26 @@ import java.util.*;
 
 public class NewAirplaneIUG extends JFrame implements ActionListener
 {
-	private JTextField tfPlate, tfOwner, tfModel, tfHours;
+	private JTextField tfPlate, tfHours;
 	private JButton bRegistrar, bLimpiar;
 	private JTextArea taDatos;
 	private JPanel panel1, panel2;
-
+	private String[] owners;
+	private JComboBox comboOwner;
+	private String[] model = {"Boeing 747","Cessna 206","Airbus 380"};
+	private JComboBox comboModel;
+	private NewAirplaneAD airplane = new NewAirplaneAD();
 
 	public NewAirplaneIUG()
 	{
+		owners = airplane.getAirlines();
 		panel1 = new JPanel();
 		panel2 = new JPanel();
 
 		tfPlate = new JTextField();
-		tfOwner = new JTextField();
-		tfModel = new JTextField();
 		tfHours = new JTextField();
+		comboModel = new JComboBox(model);
+		comboOwner = new JComboBox(owners);
 
 		bRegistrar = new JButton("Registrar");
 		bLimpiar = new JButton("Limpiar");
@@ -33,10 +38,10 @@ public class NewAirplaneIUG extends JFrame implements ActionListener
 		panel1.add(tfPlate);
 
 		panel1.add(new JLabel("Duenio"));
-		panel1.add(tfOwner);
+		panel1.add(comboOwner);
 
 		panel1.add(new JLabel("Modelo"));
-		panel1.add(tfModel);
+		panel1.add(comboModel);
 
 		panel1.add(new JLabel("Horas"));
 		panel1.add(tfHours);
@@ -64,8 +69,8 @@ public class NewAirplaneIUG extends JFrame implements ActionListener
 	private void cleanData()
 	{
 		tfPlate.setText("");
-		tfOwner.setText("");
-		tfModel.setText("");
+		comboOwner.setSelectedIndex(0);
+		comboModel.setSelectedIndex(0);
 		tfHours.setText("");
 	}
 
@@ -74,6 +79,22 @@ public class NewAirplaneIUG extends JFrame implements ActionListener
 		if(event.getSource() == bLimpiar)
 		{
 			cleanData();
+		}
+		if(event.getSource() == bRegistrar)
+		{
+			try
+			{
+				String plate = tfPlate.getText();
+				String owner = (String)comboOwner.getSelectedItem();
+				String model = (String)comboModel.getSelectedItem();
+				int hours = Integer.parseInt(tfHours.getText());
+				
+				taDatos.setText(airplane.setNewAirplane(plate,owner,model,hours));
+			}
+			catch(NumberFormatException nfe)
+			{
+				JOptionPane.showMessageDialog(null, "Horas debe de ser un numero");
+			}
 		}
 	}
 }

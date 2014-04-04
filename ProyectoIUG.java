@@ -18,6 +18,7 @@ public class ProyectoIUG extends JFrame implements ActionListener
 	private NewAirplaneIUG objetoNewAirplane = new NewAirplaneIUG();
 	private NewAirlineIUG objetoNewAirline = new NewAirlineIUG();
 	private NewFlightIUG objetoNewFlight = new NewFlightIUG();
+	private NewAirportIUG objetoNewAirport = new NewAirportIUG();
 
 	public ProyectoIUG()
 	{
@@ -54,9 +55,9 @@ public class ProyectoIUG extends JFrame implements ActionListener
 		menuConsultas.add(miAvion);
 		menuConsultas.add(miSalir);
 
-		menuTransacciones.add(miNuevoAvion);
 		menuTransacciones.add(miNuevoAeropuerto);
 		menuTransacciones.add(miNuevoAerolinea);
+		menuTransacciones.add(miNuevoAvion);
 		menuTransacciones.add(miNuevoVuelo);
 
 		menuBar.add(menuConsultas);
@@ -77,6 +78,7 @@ public class ProyectoIUG extends JFrame implements ActionListener
 		objetoNewAirplane.getPanel2().setVisible(false);
 		objetoNewAirline.getPanel2().setVisible(false);
 		objetoNewFlight.getPanel2().setVisible(false);
+		objetoNewAirport.getPanel2().setVisible(false);
 	}
 
 	public void actionPerformed(ActionEvent event)
@@ -140,6 +142,14 @@ public class ProyectoIUG extends JFrame implements ActionListener
 
 			objetoNewFlight.getPanel2().setVisible(true);
 			add(objetoNewFlight.getPanel2());
+			setVisible(true);
+		}
+
+		if (event.getSource() == miNuevoAeropuerto) {
+			ocultarPaneles();
+
+			objetoNewAirport.getPanel2().setVisible(true);
+			add(objetoNewAirport.getPanel2());
 			setVisible(true);
 		}
 

@@ -3,30 +3,25 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
-public class NewAirlineIUG extends JFrame implements ActionListener
+public class NewAirportIUG extends JFrame implements ActionListener
 {
-	private JTextField tfCode, tfName;
-	private String[] bases;
-	private JComboBox comboBases;
-	private JButton bRegistrar, bLimpiar;
+	private JTextField tfCode, tfName, tfAddress;
+	private JButton bRegister, bClean;
 	private JTextArea taData;
 	private JPanel panel1, panel2;
-	private NewAirlineAD airline = new NewAirlineAD();
+	private NewAirportAD airport = new NewAirportAD();
 
-	public NewAirlineIUG()
+	public NewAirportIUG()
 	{
-		bases = airline.getAirports();
 		panel1 = new JPanel();
 		panel2 = new JPanel();
 
-		tfCode = new JTextField(5);
+		tfCode = new JTextField(3);
 		tfName = new JTextField();
+		tfAddress = new JTextField();
 
-		comboBases = new JComboBox(bases);
-	
-
-		bRegistrar = new JButton("Registrar");
-		bLimpiar = new JButton("Limpiar");
+		bRegister = new JButton("Registrar");
+		bClean = new JButton("Limpiar");
 
 		taData = new JTextArea(8,40);
 
@@ -39,15 +34,15 @@ public class NewAirlineIUG extends JFrame implements ActionListener
 		panel1.add(new JLabel("Nombre"));
 		panel1.add(tfName);
 
-		panel1.add(new JLabel("Base"));
-		panel1.add(comboBases);
+		panel1.add(new JLabel("Direccion"));
+		panel1.add(tfAddress);
 
 
-		panel1.add(bRegistrar);
-		bRegistrar.addActionListener(this);
+		panel1.add(bRegister);
+		bRegister.addActionListener(this);
 
-		panel1.add(bLimpiar);
-		bLimpiar.addActionListener(this);
+		panel1.add(bClean);
+		bClean.addActionListener(this);
 
 		panel2.add(panel1);
 		panel2.add(new JScrollPane(taData));
@@ -67,22 +62,22 @@ public class NewAirlineIUG extends JFrame implements ActionListener
 	{
 		tfCode.setText("");
 		tfName.setText("");
-		comboBases.setSelectedIndex(0);
+		tfAddress.setText("");
 		taData.setText("");
 		
 	}
 
 	public void actionPerformed(ActionEvent event)
 	{
-		if(event.getSource() == bLimpiar)
+		if(event.getSource() == bClean)
 		{
 			cleanData();
 		}
-		if (event.getSource()== bRegistrar) {
+		if (event.getSource()== bRegister) {
 			String code = tfCode.getText();
 			String name = tfName.getText();
-			String base = (String)comboBases.getSelectedItem();
-			taData.setText(airline.setNewAirline(code, name, base));
+			String address = tfAddress.getText();
+			taData.setText(airport.setNewAirport(code, name, address));
 
 		}
 	}
