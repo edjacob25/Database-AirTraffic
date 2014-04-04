@@ -14,7 +14,7 @@ public class FlightIUG extends JFrame implements ActionListener
 
 	JSpinner datePicker;
 
-	private JButton bSearchAll, bSearchSpecific, bLimpiar, bSalir;
+	private JButton bSearchAll, bSearchSpecific, bClean, bExit;
 
 	private JTextArea taData;
 	private JPanel panel1, panel2;
@@ -30,10 +30,11 @@ public class FlightIUG extends JFrame implements ActionListener
 
 		bSearchAll = new JButton("Buscar todos");
 		bSearchSpecific = new JButton("Buscar especifico");
-		bLimpiar = new JButton("Limpiar");
-		bSalir = new JButton("Salir");
+		bClean = new JButton("Limpiar");
+		bExit = new JButton("Salir");
 
 		taData = new JTextArea(20,40);
+		//taData.setEnabled(false);
 
 		panel1 = new JPanel();
 		panel2 = new JPanel();
@@ -54,11 +55,11 @@ public class FlightIUG extends JFrame implements ActionListener
 		panel1.add(bSearchSpecific);
 		bSearchSpecific.addActionListener(this);
 
-		panel1.add(bLimpiar);
-		bLimpiar.addActionListener(this);
+		panel1.add(bClean);
+		bClean.addActionListener(this);
 
-		panel1.add(bSalir);
-		bSalir.addActionListener(this);
+		panel1.add(bExit);
+		bExit.addActionListener(this);
 
 		panel2.add(panel1);
 		panel2.add(new JScrollPane(taData));
@@ -104,12 +105,12 @@ public class FlightIUG extends JFrame implements ActionListener
 			}
 		}
 
-		if(event.getSource() == bLimpiar)
+		if(event.getSource() == bClean)
 		{
 			cleanData();
 		}
 
-		if(event.getSource() == bSalir)
+		if(event.getSource() == bExit)
 		{
 			System.exit(0);
 		}

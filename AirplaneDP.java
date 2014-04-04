@@ -8,7 +8,10 @@ public class AirplaneDP
 	int hours_on_flight;
 
 	public AirplaneDP(){
-
+		this.plate = "";
+		this.owner = "";
+		this.model = "";
+		this.hours_on_flight = 0;		
 	}
 
 	public AirplaneDP(String data){
@@ -52,4 +55,9 @@ public class AirplaneDP
 	public int getHours(){
 		return this.hours_on_flight;
 	}
-} 
+
+	public String toString()
+	{
+		return this.plate+"_"+this.owner+"_"+this.model+"_"+this.hours_on_flight+"\n";
+	}
+}	

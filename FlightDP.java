@@ -16,6 +16,11 @@ public class FlightDP
 
 	public FlightDP()
 	{
+		this.flight_number = 0;
+		this.status = "";
+		this.plane = "";
+		this.origin = "";
+		this.destination = "";
 	}
 
 	public FlightDP(String data)
@@ -125,5 +130,10 @@ public class FlightDP
 	{
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return flight_number+"_"+status+"_"+plane+"_"+origin+"_"+destination+"_"+format.format(departure)+"_"+format.format(arrival);
+	}
+
+	public String toStringNoCalendar()
+	{
+		return flight_number+"_"+status+"_"+plane+"_"+origin+"_"+destination+"\n";
 	}
 }

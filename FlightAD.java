@@ -7,15 +7,15 @@ import java.util.Calendar;
 
 public class FlightAD
 {
-	private Connection conexion;
+	private Connection conection;
 	private Statement statement;
 
 	public FlightAD(){
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost/AirTraffic","myself","myself");
-			System.out.println("Conexion exitosa a la BD en MySQL, JDBC Tipo 4");
+			conection = DriverManager.getConnection("jdbc:mysql://localhost/AirTraffic","myself","myself");
+			System.out.println("conection exitosa a la BD en MySQL, JDBC Tipo 4");
 		}
 		catch(ClassNotFoundException cnfe)
 		{
@@ -45,7 +45,7 @@ public class FlightAD
 		ResultSet tr = null;
 			try
 			{
-				statement = conexion.createStatement();
+				statement = conection.createStatement();
 				query = "SELECT * FROM Flight";
 				tr = statement.executeQuery(query);
 	
@@ -89,7 +89,7 @@ public class FlightAD
 		ResultSet tr = null;
 			try
 			{
-				statement = conexion.createStatement();
+				statement = conection.createStatement();
 				query = "SELECT * FROM Flight WHERE status = '"+status+"' AND departure > '"+date+"' AND departure < '"+tomorrow+"'";
 				tr = statement.executeQuery(query);
 	
